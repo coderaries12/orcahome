@@ -24,13 +24,8 @@ import useIsMobile from '../utils/useIsMobile'
 
 const navLinks = [
   {
-    name: 'About Us',
-    url: '/about',
-    icon: '',
-  },
-  {
-    name: 'Listen',
-    url: '/listen',
+    name: 'Get Involved',
+    url: '/getinvolved',
     icon: '',
   },
   {
@@ -39,8 +34,13 @@ const navLinks = [
     icon: '',
   },
   {
-    name: 'Get Involved',
-    url: '/getinvolved',
+    name: 'About Us',
+    url: '/about',
+    icon: '',
+  },
+  {
+    name: 'Listen',
+    url: '/listen',
     icon: '',
   },
 ]
