@@ -1,8 +1,10 @@
 import CloseIcon from '@mui/icons-material/Close'
 import MenuIcon from '@mui/icons-material/Menu'
 import NotificationsIcon from '@mui/icons-material/Notifications'
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism'
 import {
   AppBar,
+  Avatar,
   Box,
   Button,
   Container,
@@ -10,16 +12,19 @@ import {
   IconButton,
   List,
   ListItem,
+  ListItemAvatar,
   ListItemText,
   Toolbar,
   Typography,
 } from '@mui/material'
 import { ThemeProvider, useTheme } from '@mui/material/styles'
+import { border } from '@mui/system'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
 import orcasoundlogo from '../../public/images/orcasoundlogo.png'
+import wavyline from '../../public/images/wavyline.png'
 import useIsMobile from '../utils/useIsMobile'
 
 const navLinks = [
@@ -43,6 +48,16 @@ const navLinks = [
     url: '/listen',
     icon: '',
   },
+  {
+    name: 'Blog',
+    url: '/blog',
+    icon: '',
+  },
+  {
+    name: 'Send Feedback',
+    url: '/',
+    icon: '',
+  },
 ]
 
 const Nav = () => {
@@ -52,43 +67,83 @@ const Nav = () => {
   return (
     <ThemeProvider theme={theme}>
       <AppBar position="relative" sx={{ zIndex: theme.zIndex.drawer + 1 }}>
-        <Container maxWidth="xl">
-          <Toolbar disableGutters>
-            <Box sx={{ flexGrow: 1 }}>
-              <Box
-                sx={{
-                  backgroundColor: 'white',
-                  width: '69px',
-                  height: '66px',
-                  margin: '10px',
-                  borderRadius: '100px',
-                }}
-              >
-                <Link href="/" passHref>
-                  <Box
-                    component="a"
-                    sx={{
-                      width: '60px',
-                      height: '44px',
-                      top: '20px',
-                      left: '15px',
-                      borderRadius: '100px',
-                      position: 'absolute',
-                    }}
-                  >
-                    <Image
-                      src={orcasoundlogo}
-                      alt="Orcasound"
-                      width={90}
-                      height={70}
-                    />
-                  </Box>
-                </Link>
-              </Box>
-            </Box>
+        {isMobile ? (
+          <Container maxWidth="xl" sx={{ display: 'flex' }}>
             {isMobile ? <Mobile /> : <Desktop />}
-          </Toolbar>
-        </Container>
+            <Toolbar disableGutters>
+              <Box sx={{ flexGrow: 1 }}>
+                <Box
+                  sx={{
+                    backgroundColor: 'white',
+                    width: '69px',
+                    height: '66px',
+                    margin: '10px',
+                    borderRadius: '100px',
+                  }}
+                >
+                  <Link href="/" passHref>
+                    <Box
+                      component="a"
+                      sx={{
+                        width: '60px',
+                        height: '44px',
+                        top: '20px',
+                        left: '15px',
+                        borderRadius: '100px',
+                        position: 'absolute',
+                      }}
+                    >
+                      <Image
+                        src={orcasoundlogo}
+                        alt="Orcasound"
+                        width={90}
+                        height={70}
+                      />
+                    </Box>
+                  </Link>
+                </Box>
+              </Box>
+            </Toolbar>
+          </Container>
+        ) : (
+          <Container maxWidth="xl">
+            <Toolbar disableGutters>
+              <Box sx={{ flexGrow: 1 }}>
+                <Box
+                  sx={{
+                    backgroundColor: 'white',
+                    width: '69px',
+                    height: '66px',
+                    margin: '10px',
+                    borderRadius: '100px',
+                  }}
+                >
+                  <Link href="/" passHref>
+                    <Box
+                      component="a"
+                      sx={{
+                        width: '60px',
+                        height: '44px',
+                        top: '20px',
+                        left: '15px',
+                        borderRadius: '100px',
+                        position: 'absolute',
+                      }}
+                    >
+                      <Image
+                        src={orcasoundlogo}
+                        alt="Orcasound"
+                        width={90}
+                        height={70}
+                      />
+                    </Box>
+                  </Link>
+                </Box>
+              </Box>
+              {isMobile ? <Mobile /> : <Desktop />}
+            </Toolbar>
+          </Container>
+        )}
       </AppBar>
     </ThemeProvider>
   )
@@ -103,26 +158,54 @@ function Mobile() {
 
   const list = (
     <Box
-      sx={{ backgroundColor: 'black' }}
+      sx={{ backgroundColor: 'white' }}
       onClick={handleMenuToggle}
       onKeyDown={handleMenuToggle}
     >
       <List
         sx={{
+          width: '238px',
+          border: '1px solid',
           color: 'white',
           backgroundColor: 'black',
         }}
       >
         {navLinks.map((navLink) => (
           <Link key={navLink.name} href={navLink.url} passHref>
-            <ListItem button sx={{ borderBottom: '1px solid white' }}>
+            <ListItem
+              button
+              sx={{
+                borderBottom: '1px solid rgba(217, 217, 217, 0.5)',
+                ':hover': {
+                  textDecoration: 'rgba(0, 139, 223, 1) wavy underline',
+                },
+              }}
+            >
               <ListItemText primary={navLink.name} />
             </ListItem>
           </Link>
         ))}
         <Link href="/" passHref>
+          <ListItem
+            button
+            sx={{ borderBottom: '1px solid rgba(217, 217, 217, 0.5)' }}
+          >
+            <ListItemAvatar>
+              <Avatar sx={{ background: 'none', marginLeft: '-10px' }}>
+                <NotificationsIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText sx={{ marginLeft: '-25px' }} primary="Notify Me" />
+          </ListItem>
+        </Link>
+        <Link href="/donate" passHref>
           <ListItem button>
-            <ListItemText primary="Notify Me" />
+            <ListItemAvatar>
+              <Avatar sx={{ background: 'none', marginLeft: '-10px' }}>
+                <VolunteerActivismIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText sx={{ marginLeft: '-25px' }} primary="Support" />
           </ListItem>
         </Link>
       </List>
