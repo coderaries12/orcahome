@@ -188,7 +188,12 @@ function Mobile() {
         <Link href="/" passHref>
           <ListItem
             button
-            sx={{ borderBottom: '1px solid rgba(217, 217, 217, 0.5)' }}
+            sx={{
+              borderBottom: '1px solid rgba(217, 217, 217, 0.5)',
+              ':hover': {
+                textDecoration: 'rgba(0, 139, 223, 1) wavy underline',
+              },
+            }}
           >
             <ListItemAvatar>
               <Avatar sx={{ background: 'none', marginLeft: '-10px' }}>
@@ -199,7 +204,14 @@ function Mobile() {
           </ListItem>
         </Link>
         <Link href="/donate" passHref>
-          <ListItem button>
+          <ListItem
+            button
+            sx={{
+              ':hover': {
+                textDecoration: 'rgba(0, 139, 223, 1) wavy underline',
+              },
+            }}
+          >
             <ListItemAvatar>
               <Avatar sx={{ background: 'none', marginLeft: '-10px' }}>
                 <VolunteerActivismIcon />
