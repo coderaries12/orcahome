@@ -68,7 +68,7 @@ const Nav = () => {
     <ThemeProvider theme={theme}>
       <AppBar position="relative" sx={{ zIndex: theme.zIndex.drawer + 1 }}>
         {isMobile ? (
-          <Container maxWidth="xl" sx={{ display: 'flex' }}>
+          <Container maxWidth="xl" sx={{ display: 'flex', gap: '3rem' }}>
             {isMobile ? <Mobile /> : <Desktop />}
             <Toolbar disableGutters>
               <Box sx={{ flexGrow: 1 }}>
@@ -225,7 +225,7 @@ function Mobile() {
   )
 
   return (
-    <Box sx={{ display: { xs: 'flex', sm: 'none' } }}>
+    <Box sx={{ display: { xs: 'flex', sm: 'none', gap: '1rem' } }}>
       <IconButton
         size="large"
         aria-label="account of current user"
@@ -233,6 +233,16 @@ function Mobile() {
         aria-haspopup="true"
         onClick={handleMenuToggle}
         color="inherit"
+        sx={{
+          position: 'fixed',
+          marginTop: '1rem',
+          ':hover': {
+            backgroundColor: 'rgba(217, 217, 217, 0.5)',
+            borderRadius: '50%',
+            height: '50px',
+            width: '50px',
+          },
+        }}
       >
         {menuIsOpen ? <CloseIcon /> : <MenuIcon />}
       </IconButton>
